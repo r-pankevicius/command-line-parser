@@ -170,10 +170,9 @@ namespace System.CommandLine
             if (namedArgumentReference.IndexOf(this.Options.KeyValueSeparator) > 0)
             {
                 string[] tokenElements = token.Split(new string[] { this.Options.KeyValueSeparator }, StringSplitOptions.None);
-                if (tokenElements.Length != 2)
-                    return false;
                 namedArgumentReference = tokenElements[0];
-                value = tokenElements[1];
+                // Join other token parts back the value, because value accidentally may contain separator
+                value = string.Join(this.Options.KeyValueSeparator, tokenElements.Skip(1));
             }
 
             // Checks if there is a named argument with the name or alias that is specified in the token
