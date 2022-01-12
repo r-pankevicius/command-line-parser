@@ -1,4 +1,6 @@
-
 # Ignores the build outputs
 bin/
 obj/
+
+# Visual Studio stuff
+/.vs
